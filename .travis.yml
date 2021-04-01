@@ -1,0 +1,13 @@
+language: generic 
+
+sudo: required
+
+services:
+  - Docker
+
+before_install:
+  - docker build -t kkboranbay/docker-react -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true kkboranbay/docker-react npm run test
+  # - docker run kkboranbay/docker-react npm run test -- --coverage
